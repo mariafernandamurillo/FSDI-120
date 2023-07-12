@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<div class="home-banner-container">
+    <div class="img-home-banner-container">
+        <img class="img-home-banner" src="{% static 'img/july_event_3.jpg' %}" alt="" srcset="">
+    </div>
+    <div class="text-home-banner-container">
+        <p>
+            {% if user.is_authenticated %}
+                <p class="title-home-banner">Hello, {{ user.username }}!</p>
+            <input class="primary-btn" type="button" value="Create Event">
+            {% else %}
+                <p class="title-home-banner">Join to eventpride to create your own events!</p>
+                <input class="primary-btn" type="button" value="Join Me">
+        {% endif %}
+        </p>
+    </div>
+
+    <div class="events-for-you">
+        <nav class="nav-events-for-you">
+            <a href="">All</a>
+            <a href="">Music</a>
+            <a href="">Health</a>
+            <a href="">Games</a>
+            <a href="">Sports</a>
+            <a href="">Technology</a>
+            <a href="">Support</a>
+        </nav>
+
+        {% if user.is_authenticated %}
+            <h1>Events For {{ user.username }}</h1>
+        {% else %}
+            <h1>Events For You</h1>
+        {% endif %}
+    </div>
+
+    <div class="events-for-you">
+        <h1>Online Events</h1>
+    </div>
+
+    <div class="events-for-you">
+        <h1>Cities With Events</h1>
+        <nav class="nav-events-for-you">
+            <a href="">City 1</a>
+            <a href="">City 2</a>
+            <a href="">City 3</a>
+            <a href="">City 4</a>
+            <a href="">City 5</a>
+            <a href="">City 6</a>
+        </nav>
+
+        <nav class="nav-events-for-you">
+            <a href="">City 1</a>
+            <a href="">City 2</a>
+            <a href="">City 3</a>
+            <a href="">City 4</a>
+            <a href="">City 5</a>
+            <a href="">City 6</a>
+        </nav>
+    </div>
+
+</div>
+
+{% endblock content %}

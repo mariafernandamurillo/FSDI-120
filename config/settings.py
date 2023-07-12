@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
     'events',
     'pages',
+    'tickets',
+    'location_field.apps.DefaultConfig',
+    #'cities',
+    #'django.contrib.gis',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +131,9 @@ STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "accounts.CustomUser"
+#AUTH_USER_MODEL = "accounts.CustomUser"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+
+#GDAL_LIBRARY_PATH = r'C:\Users\<User>\Documents\<proj>\Lib\site-packages\osgeo\gdal301'
+#GDAL_LIBRARY_PATH = "/usr/lib/libgdal.so"
