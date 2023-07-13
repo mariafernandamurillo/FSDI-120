@@ -12,11 +12,11 @@
     <div class="text-home-banner-container">
         <p>
             {% if user.is_authenticated %}
-                <p class="title-home-banner">Hello, {{ user.username }}!</p>
-            <input class="primary-btn" type="button" value="Create Event">
-            {% else %}
-                <p class="title-home-banner">Join to eventpride to create your own events!</p>
-                <input class="primary-btn" type="button" value="Join Me">
+        <p class="title-home-banner">Hello, {{ user.username }}!</p>
+        <input class="primary-btn" type="button" value="Create Event">
+        {% else %}
+        <p class="title-home-banner">Join to eventpride to create your own events!</p>
+        <input class="primary-btn" type="button" value="Join Me">
         {% endif %}
         </p>
     </div>
@@ -24,19 +24,31 @@
     <div class="events-for-you">
         <nav class="nav-events-for-you">
             <a href="">All</a>
-            <a href="">Music</a>
-            <a href="">Health</a>
-            <a href="">Games</a>
-            <a href="">Sports</a>
-            <a href="">Technology</a>
-            <a href="">Support</a>
+            {% for category in categories_list %}
+            <a href="">{{ category.0 }}</a>
+            {% endfor %}
         </nav>
 
         {% if user.is_authenticated %}
-            <h1>Events For {{ user.username }}</h1>
+        <h1>Events For {{ user.username }}</h1>
+
         {% else %}
-            <h1>Events For You</h1>
+        <h1>Events For You</h1>
+
         {% endif %}
+
+
+        <div class="event-container">
+            {% for event in events_list %}
+                <div class="event-card">
+                    <img class="img-event-card" src="{% static 'img/img_event.jpg' %}" alt="" srcset="">
+                    <h3>{{ event.name }}</h3>
+                    <p>{{ event.date }} - {{ event.start_time }}</p>
+                    <p>{{ event.modality }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
     </div>
 
     <div class="events-for-you">

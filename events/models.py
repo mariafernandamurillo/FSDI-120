@@ -4,7 +4,6 @@ from django.urls import reverse
 from location_field.models.plain import PlainLocationField
 from django.utils import timezone
 
-
 CATEGORY_CHOICES = [
     ('Arts', 'Arts'),
     ('Music', 'Music'),

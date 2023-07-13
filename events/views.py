@@ -11,6 +11,7 @@ class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
     fields = ["name"]
     
+    
 class EventFavoriteView(TemplateView):
     template_name = "events/favorites.html"
 
