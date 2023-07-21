@@ -6,9 +6,9 @@ Event
 
 
 {% block content %}
-<h1>Event</h1>
+<h1>Draft</h1>
 {% for event in event_list %}
-    {% if event.status.name == 'published' %}
+    {% if event.status.name == 'draft' %}
     <div class="card">
         <div class="card-body">
             <h1>status= {{ event.status }}</h1>
@@ -19,10 +19,9 @@ Event
         </div>
     </div>
     <br>
-
     {% endif %}
-{% endfor %}
-{% if published_count == 0 %}
-    <h1>no published events</h1>
+    {% endfor %}
+    {% if draft_count == 0 %}
+    <h1>no draft events</h1>
     {% endif %}
 {% endblock content %}
