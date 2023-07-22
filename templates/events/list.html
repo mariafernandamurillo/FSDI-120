@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Event
+{% endblock title %}
+
+
+{% block content %}
+<h1>Event</h1>
+{% for event in event_list %}
+    {% if event.status.name == 'published' %}
+    <div class="card">
+        <div class="card-body">
+            <h1>status= {{ event.status }}</h1>
+            <h5 class="card-title">{{ event.title }}</h5>
+            <h6 class="card-substitle mb-2 text-body-secondary">{{ event.subtitle }}</h6>
+            <p class="card-text">{{ event.body|truncatechars:100 }}</p>
+            <a href="{% url 'event_detail' event.pk %}" class="card-link">Continue reading...</a>
+        </div>
+    </div>
+    <br>
+
+    {% endif %}
+{% endfor %}
+{% if published_count == 0 %}
+    <h1>no published events</h1>
+    {% endif %}
+{% endblock content %}

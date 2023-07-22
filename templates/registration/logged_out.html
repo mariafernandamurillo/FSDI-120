@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
 
 {% block title %}Log Out{% endblock title %}
 
@@ -6,4 +7,18 @@
 <h1>Logged Out!</h1>
 
 
+=======
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<h2>You have Logged Out</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy  }}
+</form>
+>>>>>>> 412f5edb1f16317d38d008c4e15d2479e221f630
 {% endblock content %}

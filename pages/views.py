@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+<<<<<<< HEAD
 from events.models import Event, CATEGORY_CHOICES
 from django.shortcuts import render
 
@@ -27,3 +28,11 @@ class TermsPageView(TemplateView):
 
 class DevelopersPageView(TemplateView):
     template_name = "pages/developers.html"
+=======
+
+class HomePageView(TemplateView):
+    template_name = "pages/home.html"
+
+class AboutPageView(TemplateView):
+    template_name = "pages/about.html"
+>>>>>>> 412f5edb1f16317d38d008c4e15d2479e221f630
