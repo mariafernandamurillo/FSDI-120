@@ -14,6 +14,13 @@ CATEGORY_CHOICES = [
     ('Support', 'Support'),
 ]
 
+
+STATUS_CHOICES = [
+    ('Published', 'Published'),
+    ('Draft', 'Draft'),
+    ('Archived', 'Archived'),
+]
+
 MODALITY_CHOICES = [
     ('Online', 'Online'),
     ('In-person', 'In-person'),
@@ -32,7 +39,7 @@ CITY_CHOICES = [
     ('Santa Ana', 'Santa Ana'),
     # Add more cities here
 ]
-
+    
 # Create your models here.
 class Event(models.Model):
     name = models.CharField(max_length=128) 
@@ -45,9 +52,11 @@ class Event(models.Model):
         on_delete=models.CASCADE
     )
     category = models.CharField(max_length=128, choices=CATEGORY_CHOICES, default='Arts')
+    status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='Draft')
     modality = models.CharField(max_length=128, choices=MODALITY_CHOICES, default='Virtual')
     city = models.CharField(max_length=128, choices=CITY_CHOICES, default='San Diego')
     location = PlainLocationField(based_fields=['city'], zoom=7, null=True, blank=True)
+    
 
     def __str__(self):
         return self.name
@@ -56,9 +65,15 @@ class Ticket(models.Model):
     join_date = models.DateTimeField(default=timezone.now)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
-    #def __str__(self):
-        #return self.name
-    
+
+class Favorite(models.Model):
+    join_date = models.DateTimeField(default=timezone.now)
+    status = models.BooleanField(null=True, blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse("favorites_list")
+        
 
 #Attributes of Event Model
 

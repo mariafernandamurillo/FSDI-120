@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Details{% endblock title %}
+
+{% block content %}
+
+<h3>{{ event.name }}</h3>
+
+{% if user.is_authenticated %}
+    {% if user == event.organizer %}
+        <input class="primary-btn" type="button" value="Edit">
+        <input class="secondary-btn" type="button" value="Delete">
+    {% else %}
+        <input class="secondary-btn" type="button" value="Cancel">
+    {% endif %}
+{% else %}
+    <a href="{% url 'login' %}" class="primary-a">Attend</a>
+{% endif %} 
+{% endblock content %}

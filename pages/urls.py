@@ -8,4 +8,4 @@ urlpatterns = [
     path("contact/", ContactPageView.as_view(), name="contact"),
     path("terms/", TermsPageView.as_view(), name="terms"),
     path("developers/", DevelopersPageView.as_view(), name="developers"),
-]
+] 

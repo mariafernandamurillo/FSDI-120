@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Test Template{% endblock title %}
+
+{% block content %}
+<h1>This is a Template for Testing Views</h1>
+
+{% for event in events_list %}
+
+<div>
+    <h2>{{ event.name }}</h2>
+    
+    {% endif %}
+
+</div>
+ 
+{% endfor %}
+
+{% endblock content %} 

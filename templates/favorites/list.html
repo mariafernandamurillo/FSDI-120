@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Favs{% endblock title %}
+
+{% block content %}
+
+<h1>Favs</h1>
+
+{% for fav in favorites_list %}
+
+<div>
+    <h2>{{ fav.event.name }}</h2>
+    <p>{{ fav.event.description|truncatechars:500 }}</p>
+    <a href="{% url 'home' %}" class="card-link">Read more...</a>
+    <p>{{ fav.event.date }}</p>
+    <p> {{ fav.event.start_time }} - {{ fav.event.end_time }}</p>
+    {% if fav.event.modality == "Online" %}
+    <p>{{ fav.event.modality }}</p>
+    <p>{{ fav.event.pk }}</p>
+
+    {% else %}
+    <p>{{ fav.event.city }}</p>
+
+    {% endif %}
+
+</div>
+ 
+{% endfor %}
+
+{% endblock content %}

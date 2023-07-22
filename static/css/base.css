@@ -50,14 +50,47 @@ h1{
     color: white;
     border-radius: 2px;
     font-size: 18px;   
+    text-decoration: none;
 }
 
 .primary-btn:hover{
+    border: 0px;
+    background-color: #961E03;
+    color: white;
+}
+
+.secondary-btn{
+    border: solid 1px #C82804;
+    background-color: #FFFFFF;
+    color: #C82804;
+    width: 150px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 2px;
+    font-size: 18px; 
+}
+
+.secondary-btn:hover{
+    border: 0px;
     background-color: #FDAD9B;
     color: #641402;
 }
 
+.primary-a{
+    padding: 3px 20px;
+    border: 0px;
+    background-color: #C82804;
+    color: white;
+    border-radius: 2px;
+    font-size: 18px;   
+    text-decoration: none;
+}
 
+.primary-a:hover{
+    border: 0px;
+    background-color: #961E03;
+    color: white;
+}
 
 .content{
     min-height: 700px;
