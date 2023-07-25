@@ -1,21 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-{% block title %}{{ event.title }}{% endblock title %}
-
+{% block title %}{{ event.date }}{% endblock title %}
 
 {% block content %}
+
+    <h3>{{ event.name }}</h3>
     <h1>Event #{{ event.id }}</h1>
-    <h2>{{ event.title }}</h2>
     <h6>Start Time: {{ event.date_picker }} <br> At: {{ event.time_picker }} <br> To: {{ event.end_picker }}</h6>
     <h5>{{ event.subtitle }}</h5>
     <p>{{ event.body }}</p>
-        <img src="{{ event.thumbnail.url }}" alt="event_image" width="300" />
+    <img src="{{ event.thumbnail.url }}" alt="event_image" width="300" />
     <br>
     <strong>Create on : {{ event.created_on }}</strong>
-    {% if user.is_authenticated %}
-    <a href="{% url 'event_edit' event.id %}" class="btn btn-success"><i class="bi bi-pencil"></i></a>
-    <a href="{% url 'event_delete' event.id %}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+{% if user.is_authenticated %}
+
+    {% if user == event.organizer %}
+        <a href="{% url 'event_edit' event.id %}" class="btn btn-success"><i class="bi bi-pencil"></i>edit</a>
+        <a href="{% url 'event_delete' event.id %}" class="btn btn-danger"><i class="bi bi-trash"></i>delete</a>
+        <!-- <input class="primary-btn" type="button" value="Edit"> -->
+        <!-- <input class="secondary-btn" type="button" value="Delete"> -->
+    {% else %}
+        <input class="secondary-btn" type="button" value="Cancel">
     {% endif %}
-    {% endblock content %}
+{% else %}
+    <a href="{% url 'login' %}" class="primary-a">Attend</a>
+{% endif %} 
+{% endblock content %}

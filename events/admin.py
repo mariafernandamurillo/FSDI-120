@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Event, Status
-# Register your models here.
+from .models import Event, Ticket, Favorite, Status
+
 admin.site.register(Event)
-admin.site.register(Status)
+admin.site.register(Ticket)
+admin.site.register(Favorite)

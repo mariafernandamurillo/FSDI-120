@@ -1,14 +1,89 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}
-HOME
-{% endblock title %}
-<div class="container">
-    {% block content %}<h1>Home Page</h1>
-    {% if user.is_authenticated %}
-    <h3>Hello, {{ user.username }}</h3>
-    {% else %}
-    <h3>Log in to post and edit</h3>
-    {% endif %}
-</div>
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    <div class="home-banner-container">
+        <div class="img-home-banner-container">
+            <img class="img-home-banner" src="{% static 'img/july_event_3.jpg' %}" alt="" srcset="">
+        </div>
+        <div class="text-home-banner-container">
+            <p>
+                {% if user.is_authenticated %}
+            <p class="title-home-banner">Hello, {{ user.username }}!</p>
+            <input class="primary-btn" type="button" value="Create Event">
+            {% else %}
+            <p class="title-home-banner">Join to eventpride to create your own events!</p>
+            <input class="primary-btn" type="button" value="Join Me">
+            {% endif %}
+            </p>
+        </div>
+
+        <div class="events-for-you">
+            <nav class="nav-events-for-you">
+                <a  class="primary-a" href="">All</a>
+                {% for category in categories_list %}
+                <a  class="primary-a" href="">{{ category.0 }}</a>
+                {% endfor %}
+            </nav>
+
+            {% if user.is_authenticated %}
+            <h1>Events For {{ user.username }}</h1>
+
+            {% else %}
+            <h1>Events For You</h1>
+
+            {% endif %}
+
+
+            <div class="event-container">
+                {% for event in events_list %}
+                <div class="event-card" id="event-card">
+
+                    <img class="img-event-card" src="{% static 'img/img_event.jpg' %}" alt="" srcset=""
+                        onclick="displayDetails('{{ event.id }}')">
+                    
+                    <div class="wrap-name-favorite">
+                        <p onclick="displayDetails('{{ event.id }}')" class="event-name">{{ event.name }}</p>
+                        <i onclick="addFavorite(event)" class="favorite-btn bi bi-star"></i>
+                    </div>
+                    
+                    <p>{{ event.date }} - {{ event.start_time }}</p>
+                    <p>{{ event.modality }}</p>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="events-for-you">
+            <h1>Online Events</h1>
+        </div>
+
+        <div class="events-for-you">
+            <h1>Cities With Events</h1>
+            <nav class="nav-events-for-you">
+                <a class="primary-a" href="">City 1</a>
+                <a class="primary-a" href="">City 2</a>
+                <a class="primary-a" href="">City 3</a>
+                <a class="primary-a" href="">City 4</a>
+                <a class="primary-a" href="">City 5</a>
+                <a class="primary-a" href="">City 6</a>
+            </nav>
+
+            <nav class="nav-events-for-you">
+                <a  class="primary-a" href="">City 1</a>
+                <a  class="primary-a" href="">City 2</a>
+                <a  class="primary-a" href="">City 3</a>
+                <a  class="primary-a" href="">City 4</a>
+                <a  class="primary-a" href="">City 5</a>
+                <a  class="primary-a" href="">City 6</a>
+            </nav>
+        </div>
+
+    </div>
 {% endblock content %}
+
+

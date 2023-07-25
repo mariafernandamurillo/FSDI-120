@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tickets{% endblock title %}
+
+{% block content %}
+
+<h1>Tickets</h1>
+
+{% for ticket in tickets_list %}
+
+<div>
+    <h2>{{ ticket.event.name }}</h2>
+    <p>{{ ticket.event.description|truncatechars:500 }}</p>
+    <a href="{% url 'home' %}" class="card-link">Read more...</a>
+    <p>{{ ticket.event.date }}</p>
+    <p> {{ ticket.event.start_time }} - {{ ticket.event.end_time }}</p>
+    {% if ticket.event.modality == "Online" %}
+    <p>{{ ticket.event.modality }}</p>
+
+    {% else %}
+    <p>{{ ticket.event.city }}</p>
+
+    {% endif %}
+
+</div>
+ 
+{% endfor %}
+
+{% endblock content %}

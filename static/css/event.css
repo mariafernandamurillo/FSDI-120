@@ -1,0 +1,47 @@
+.event-container {
+    margin: 0px 0px 0px 150px;
+    display: flex;
+}
+
+.event-card {
+    width: fit-content;
+    margin: 20px;
+    padding: 20px;
+    border: solid 0.1px #F4F4F4;
+}
+
+.img-event-card {
+    width: 300px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center 65%;
+    border-radius: 1px;
+}
+
+.img-event-card:hover {
+    cursor: pointer;
+}
+
+.event-name {
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.event-name:hover {
+    cursor: pointer;
+}
+
+.favorite-btn {
+    /*position: relative;
+    top: -20px;*/
+    font-size: 30px;
+    color: #C82804;
+    cursor: pointer;
+}
+
+.wrap-name-favorite{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

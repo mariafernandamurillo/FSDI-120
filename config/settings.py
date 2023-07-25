@@ -41,11 +41,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "pages",
-    "events",
-    "accounts",
+    'accounts',
+    'events',
+    'pages',
+    'tickets',
+    'location_field.apps.DefaultConfig',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    #'cities',
+    #'django.contrib.gis',
+    # "pages",
+    # "events",
+    # "accounts",
+    # 'crispy_forms',
+    # 'crispy_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -138,6 +147,12 @@ STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#AUTH_USER_MODEL = "accounts.CustomUser"
+# LOGIN_REDIRECT_URL = "home"
+# LOGOUT_REDIRECT_URL = "home"
+
+#GDAL_LIBRARY_PATH = r'C:\Users\<User>\Documents\<proj>\Lib\site-packages\osgeo\gdal301'
+#GDAL_LIBRARY_PATH = "/usr/lib/libgdal.so"
 # Media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
