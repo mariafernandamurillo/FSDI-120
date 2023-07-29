@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Search results{% endblock title %}
+
+{% block content %}
+    <h1>You searched for ...</h1>
+    {% if searched %}
+        <h1>you searched</h1>
+        <br>
+        {% for event in events %}
+           <a href="{% url 'event_detail' event.pk %}">{{event}}</a>
+            <br>
+        {% endfor %}
+
+    {% else %}
+        <h1>search something</h1>
+
+    {% endif %}    
+
+{% endblock %}

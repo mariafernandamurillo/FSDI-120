@@ -4,7 +4,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path("my_account/<int:pk>/", views.ProfileView.as_view(), name="user"),
     path("new/", views.EventCreateView.as_view(), name="create"),
+    path("search_events/", views.search_events, name="search_events"),
     # CRUD
     path("archived/", views.ArchiveEventListView.as_view(), name="archived"),
     path('drafts/', views.DraftEventListView.as_view(), name="draft"),

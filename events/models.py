@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from location_field.models.plain import PlainLocationField
 from django.utils import timezone
+from datetime import datetime
+from django.contrib.auth.models import User
 
 CATEGORY_CHOICES = [
     ('Arts', 'Arts'),
@@ -13,7 +15,6 @@ CATEGORY_CHOICES = [
     ('Technology', 'Technology'),
     ('Support', 'Support'),
 ]
-
 
 STATUS_CHOICES = [
     ('Published', 'Published'),
@@ -39,8 +40,17 @@ CITY_CHOICES = [
     ('Santa Ana', 'Santa Ana'),
     # Add more cities here
 ]
+
     
 # Create your models here.
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile_images', default=None, null=True)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Status(models.Model):
     name = models.CharField(max_length=128)
@@ -49,13 +59,14 @@ class Status(models.Model):
     def __str__(self):
         return self.name
 
+
 class Event(models.Model):
-    name = models.CharField(max_length=128) 
+    name = models.CharField(max_length=128)
     description = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     date_picker = models.DateField(null=True, blank=True)
-    start_time = models.TimeField(null=True, blank=True)
-    end_time = models.TimeField(null=True, blank=True, default=None)
+    start_time = models.TimeField(null=True, blank=False)
+    end_time = models.TimeField(null=True, blank=False, default=None)
     thumbnail = models.ImageField(upload_to='event_images', default=None, null=True)
     organizer = models.ForeignKey(
         get_user_model(),
@@ -74,7 +85,8 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Ticket(models.Model):
     join_date = models.DateTimeField(default=timezone.now)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)

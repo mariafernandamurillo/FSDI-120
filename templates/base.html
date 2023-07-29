@@ -25,12 +25,15 @@
     <nav class="nav-container">
         <a class="nav-logo" href="{% url 'home' %}">eventpride</a>
 
-        <div class="nav-search">
-            <input class="nav-search-text" type="text">
-            <input class="primary-btn" type="button" value="Search">
-        </div>
+        <form class="nav-search" method=POST action="{% url 'search_events' %}">
+            {% csrf_token %}
+
+            <input class="nav-search-text" type="search" placeholder="Search Events" aria-label="'Search" name="searched">
+            <button class="primary-btn" type="submit" value="Search">Searched</button>
+        </form>
 
         <div class="nav-menu">
+            <a class="nav-menu-item primary-a" href="{% url 'user' user.id %}">My Account</a>
             <a class="nav-menu-item primary-a" href="{% url 'create' %}">Create Event</a>
 
             {% if user.is_authenticated %}
