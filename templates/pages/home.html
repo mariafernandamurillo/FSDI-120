@@ -23,9 +23,9 @@
 
         <div class="events-for-you">
             <nav class="nav-events-for-you">
-                <a  class="primary-a" href="">All</a>
+                <a  class="primary-a" href="{% url 'home'%}">All</a>
                 {% for category in categories_list %}
-                <a  class="primary-a" href="">{{ category.0 }}</a>
+                <a  class="primary-a" href="{% url 'by_cat' category.0 %}">{{ category.0 }}</a>
                 {% endfor %}
             </nav>
 
@@ -62,7 +62,7 @@
             <h1>Online Events</h1>
         </div>
 
-        <div class="events-for-you">
+        <!-- <div class="events-for-you">
             <h1>Cities With Events</h1>
             <nav class="nav-events-for-you">
                 <a class="primary-a" href="">City 1</a>
@@ -81,7 +81,7 @@
                 <a  class="primary-a" href="">City 5</a>
                 <a  class="primary-a" href="">City 6</a>
             </nav>
-        </div>
+        </div> -->
 
     </div>
 {% endblock content %}

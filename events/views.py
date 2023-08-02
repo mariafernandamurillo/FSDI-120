@@ -1,5 +1,6 @@
 from typing import Any, Optional
 from django.db import models
+from django.db.models.query import QuerySet
 from django.views.generic import (TemplateView,
                                   ListView,
                                   CreateView,
@@ -11,7 +12,7 @@ from django.contrib.auth.mixins import (
 LoginRequiredMixin,
 UserPassesTestMixin,
 )
-from .models import Event, Ticket, Favorite, Status, Profile
+from .models import Event, Ticket, Favorite, Status, Profile, CATEGORY_CHOICES
 from .form import EventForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -39,12 +40,17 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        # form.fields["user"].disabled = True
         form.fields.pop('user')
         return form
 
     def get_success_url(self):        
         return reverse('user',kwargs={'pk':self.object.user.id})
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
 
 class EventCreateView(LoginRequiredMixin, CreateView):
     template_name = "events/new.html"
@@ -56,6 +62,33 @@ class EventCreateView(LoginRequiredMixin, CreateView):
         status_name = new_event.status.name
         success_url = reverse_lazy(str(status_name))
         return success_url
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields.pop('organizer')
+        return form
+
+    def form_valid(self, form):
+        form.instance.organizer = self.request.user
+        return super().form_valid(form)
+
+
+
+class CatListView(TemplateView):
+    template_name = "pages/home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category = self.kwargs.get('category')
+        queryset = Event.objects.filter(category = category) 
+        context["events_list"] = queryset        
+        return context
+    
+    def get(self, request, *args, **kwargs):
+        categories = self.get_context_data()
+        categories["categories_list"] = CATEGORY_CHOICES
+        return render(request, self.template_name, categories)
+    
 
 
 class EventDetailView(DetailView):

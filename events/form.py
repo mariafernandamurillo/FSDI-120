@@ -21,12 +21,3 @@ class EventForm(forms.ModelForm):
             'thumbnail': forms.ClearableFileInput(attrs={'allow_multiple_selected':True}),
         }
 
-# class UserForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Profile
-#         fields = '__all__'
-#         widgets = {
-#             'profile': forms.ClearableFileInput(attrs={'allow_multiple_selected':True}),
-#         }    
-

@@ -13,6 +13,7 @@ urlpatterns = [
     path("<int:pk>/edit/", views.EventUpdateView.as_view(), name="event_edit"),
     path("<int:pk>/delete/", views.EventDeleteView.as_view(),name="event_delete"), 
     path("", views.EventListView.as_view(), name="published"),
+    path("cats/<str:category>", views.CatListView.as_view(), name="by_cat"),
     #path("favorites/", views.EventFavoriteView.as_view(), name="favorites"),
     path("manager/", views.EventManagerView.as_view(), name="manager"),
     path("tickets_list/", views.TicketListView.as_view(), name="tickets_list"),

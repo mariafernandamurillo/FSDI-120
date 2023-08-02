@@ -33,10 +33,10 @@
         </form>
 
         <div class="nav-menu">
+            
+            {% if user.is_authenticated %}
             <a class="nav-menu-item primary-a" href="{% url 'user' user.id %}">My Account</a>
             <a class="nav-menu-item primary-a" href="{% url 'create' %}">Create Event</a>
-
-            {% if user.is_authenticated %}
             <a  class="nav-menu-item primary-a" href="{% url 'tickets_list' %}">My Tickets</a>
             <a  class="nav-menu-item primary-a" href="{% url 'favorites_list' %}">Favorites</a>
 
