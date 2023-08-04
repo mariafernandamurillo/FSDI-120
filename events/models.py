@@ -64,7 +64,7 @@ class Event(models.Model):
     status = models.ForeignKey(
         Status,
         on_delete=models.CASCADE,
-        null=True, default=None
+        null=True, default='draft'
     )
     category = models.CharField(max_length=128, choices=CATEGORY_CHOICES, default='Arts')
     modality = models.CharField(max_length=128, choices=MODALITY_CHOICES, default='Virtual')

@@ -4,3 +4,4 @@ from .models import Event, Ticket, Favorite, Status
 admin.site.register(Event)
 admin.site.register(Ticket)
 admin.site.register(Favorite)
+admin.site.register(Status)
