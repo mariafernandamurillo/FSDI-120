@@ -4,10 +4,23 @@
 {% block title %}Log Out{% endblock title %}
 
 {% block content %}
-<h1>Logged Out!</h1>
+
+<div class="home-banner-container">
+    <div class="img-home-banner-container logout-container">
+        <img class="img-home-banner logout-image" src="{% static 'img/logo-cover.jpg' %}" alt="" srcset="">
+    </div>
+
+    <div class="text-home-banner-container">
+            <p class="style1">See you at the next event!!</p>
+            <p class="style2">Discover, Attend, Connect</p>
+            <input class="b-primary" type="button" value="Join Me">
+    </div>
+
+</div>
+
 <form method="POST">
     {% csrf_token %}
-    {{ form|crispy  }}
+    {{ form|crispy }}
 </form>
 
 {% endblock content %}

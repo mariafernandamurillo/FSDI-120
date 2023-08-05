@@ -3,6 +3,45 @@
 {% block title %}Events Manager{% endblock title %}
 
 {% block content %}
-<h1>Manager</h1>
+
+<div class="nav-manager-container">
+    <nav class="nav-manager">
+        <a class="a-primary all" href="{% url 'published'%}">Pulished</a>
+        <a class="a-primary" href="{% url 'archived'%}">Archived</a>
+        <a class="a-primary" href="{% url 'draft'%}">Drafts</a>
+    </nav>
+</div>
+
+<div class="events-list">
+    <div class="section-title">
+        <p class="style4"> <span class="capitalize">{{ user.username }}</span>'s events</p>
+    </div>
+
+    <div class="events-list">
+        <div class="event-container">
+            {% for event in events_list %}
+
+            <div class="event-card" id="event-card">
+
+                <img class="img-event-card" src="{{ event.thumbnail.url }}" alt="" srcset=""
+                    onclick="displayDetails('{{ event.id }}')">
+
+                <div class="event-details">
+                    <div class="wrap-name-favorite">
+                        <p onclick="displayDetails('{{ event.id }}')" class="style5">{{ event.name }}</p>
+                        <i onclick="addFavorite(event)" class="b-favorite bi bi-star"></i>
+                    </div>
+
+                    <p class="style6">{{ event.date_picker }} - {{ event.start_time }}</p>
+                    <p class="style2">{{ event.modality }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+</div>
 
 {% endblock content %}

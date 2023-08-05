@@ -1,0 +1,102 @@
+.nav-container{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 0.5fr 2fr 2fr;
+    padding: 0.5% 0;
+}
+
+.nav-logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-name{
+    width: 100%;
+    padding: 0 10%;
+}
+
+.nav-search{
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 3fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+}
+
+.nav-menu{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.content{
+    min-height: 700px;
+}
+
+.footer-container{
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    background-color: #f7f2fb;
+}
+
+.nav-footer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.logo-image-footer{
+    width: 150px;
+    margin-bottom: 30%;
+    border-radius: 2px;
+}
+
+
+.terms-container{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.term-p{
+    width: 80%;
+    
+}
+
+.slogan{
+    margin: 4rem 0rem;
+}
+.team-container{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: top;
+}
+
+.team-member-container{
+    background-color: #f7f2fb;
+    width: 34rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1% 2%;
+}
+
+.team-description{
+    margin-top: 3%;
+}
+
+.team-img{
+    width: 20rem;
+}

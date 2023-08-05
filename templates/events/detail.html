@@ -4,26 +4,46 @@
 {% block title %}{{ event.date }}{% endblock title %}
 
 {% block content %}
+<div class="nav-manager-container">
+    <nav class="nav-manager">
+        <a class="a-primary all" href="{% url 'published'%}">Pulished</a>
+        <a class="a-primary" href="{% url 'archived'%}">Archived</a>
+        <a class="a-primary" href="{% url 'draft'%}">Drafts</a>
+    </nav>
+</div>
 
-    <h3>{{ event.name }}</h3>
-    <h1>Event #{{ event.id }}</h1>
-    <h6>Start Time: {{ event.date_picker }} <br> At: {{ event.time_picker }} <br> To: {{ event.end_picker }}</h6>
-    <h5>{{ event.subtitle }}</h5>
-    <p>{{ event.body }}</p>
-    <img src="{{ event.thumbnail.url }}" alt="event_image" width="300" />
-    <br>
-    <strong>Create on : {{ event.created_on }}</strong>
-{% if user.is_authenticated %}
+<div class="event-detail-container">
 
-    {% if user == event.organizer %}
-        <a href="{% url 'event_edit' event.id %}" class="btn btn-success"><i class="bi bi-pencil"></i>edit</a>
-        <a href="{% url 'event_delete' event.id %}" class="btn btn-danger"><i class="bi bi-trash"></i>delete</a>
-        <!-- <input class="primary-btn" type="button" value="Edit"> -->
-        <!-- <input class="secondary-btn" type="button" value="Delete"> -->
-    {% else %}
-        <input class="secondary-btn" type="button" value="Cancel">
-    {% endif %}
-{% else %}
-    <a href="{% url 'login' %}" class="primary-a">Attend</a>
-{% endif %} 
+    <div class="event-banner-container">
+        <div class="img-home-banner-container">
+            <img class="img-event-banner" src="{{ event.thumbnail.url }}" alt="" srcset="">
+        </div>
+    </div>
+
+    <div class="event-details details">
+        <div class="">
+            <p class="style5">{{ event.name }}</p>
+            <h6>Start Time: {{ event.date_picker }} <br> At: {{ event.start_time }} <br> To: {{ event.end_time }}</h6>
+            <h5>{{ event.description }}</h5>
+
+            <br>
+            <strong>Create on : {{ event.created_on }}</strong><br>
+            <strong>Hosted by: {{ event.organizer }}</strong>
+            {% if user.is_authenticated %}
+
+            {% if user == event.organizer %}
+            <a href="{% url 'event_edit' event.id %}" class="btn btn-success"><i class="bi bi-pencil"></i>edit</a>
+            <a href="{% url 'event_delete' event.id %}" class="btn btn-danger"><i class="bi bi-trash"></i>delete</a>
+            {% else %}
+            <input class="b-secondary" type="button" value="Cancel">
+            {% endif %}
+            {% else %}
+            <a href="{% url 'login' %}" class="a-primary">Attend</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock content %}

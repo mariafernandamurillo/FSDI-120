@@ -1,13 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Log In{% endblock title %}
+{% block title %}Login{% endblock title %}
 
 {% block content %}
-<h1>Log In</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Log In">
-</form>
+
+<div class="account-form-contanier">
+    <div class="account-form">
+
+        <div>
+            <a href="{%  url 'home' %}"  rel="noopener noreferrer">
+                <img class="logo-image-footer" src="{% static 'img/ep logo.png' %}" alt="">
+            </a>
+            
+        </div>
+
+        <p class="style4">Login</p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="b-primary" type="submit" value="Login">
+        </form>
+
+        <div class="create-account" >
+            <p style="margin-top: 2rem; ">New here?</p>
+            <a href="{%  url 'signup' %}"  rel="noopener noreferrer"> Create account</a>
+        </div>
+        
+        
+    </div>
+</div>
 
 {% endblock content %}

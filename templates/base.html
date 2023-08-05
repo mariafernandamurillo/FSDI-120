@@ -5,9 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-inputs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav-header-footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/event.css' %}">
+    <link rel="stylesheet" href="{% static 'css/media-queries.css' %}">
+    <link rel="stylesheet" href="{% static 'css/manager.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sessions.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -23,35 +27,43 @@
 <body>
 
     <nav class="nav-container">
-        <a class="nav-logo" href="{% url 'home' %}">eventpride</a>
+        <a class="nav-logo-container" href="{% url 'home' %}">
+            <img class="logo-name" src="{% static 'img/ep - name.png' %}" alt="eventpride logo">
+        </a>
 
-        <div class="nav-search">
-            <input class="nav-search-text" type="text">
-            <input class="primary-btn" type="button" value="Search">
-        </div>
+        <form class="nav-search" method='POST' action="{% url 'search_events' %}">
+            {% csrf_token %}
+
+            <input class="input-text" type="search" placeholder=" Piano concert " aria-label="'Search" name="searched">
+            <button class="b-primary remove-text" type="submit" value="Search">Search <i
+                    class="bi bi-search add-icon"></i></button>
+        </form>
 
         <div class="nav-menu">
-            <a class="nav-menu-item primary-a" href="{% url 'create' %}">Create Event</a>
-
+            <a class="a-primary" href="{% url 'create' %}">Create Event</a>
             {% if user.is_authenticated %}
-            <a  class="nav-menu-item primary-a" href="{% url 'tickets_list' %}">My Tickets</a>
-            <a  class="nav-menu-item primary-a" href="{% url 'favorites_list' %}">Favorites</a>
+            
+            <!--<a class="a-primary" href="{% url 'tickets_list' %}">My Tickets</a>
+            <a class="a-primary" href="{% url 'favorites_list' %}">Favorites</a>-->
 
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ user.username }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="{% url 'manager' %}">Event Manager</a></li>
-                    <li><a class="dropdown-item" href="{% url 'tickets_list' %}">Tickets</a></li>
-                    <li><a class="dropdown-item" href="{% url 'favorites_list' %}">Favorites</a></li>
-                    <li></li><a class="nav-link" href="{% url 'published' %}">Events</a>
-                    <li></li><a class="nav-link" href="{% url 'archived' %}">Archive</a>
-                    <li></li><a class="nav-link" href="{% url 'draft' %}">Drafts</a>
+                    <li><a class="dropdown-item " href="{% url 'manager' %}">Event Manager</a></li>
+                    <ul>
+                        <li><a class="nav-link" href="{% url 'published' %}">Published</a></li>
+                        <li><a class="nav-link" href="{% url 'archived' %}">Archive</a></li>
+                        <li><a class="nav-link" href="{% url 'draft' %}">Drafts</a></li>
+                    </ul>
+                    <!--<li><a class="dropdown-item" href="{% url 'tickets_list' %}">Tickets</a></li>
+                    <li><a class="dropdown-item" href="{% url 'favorites_list' %}">Favorites</a></li>-->
+
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="{% url 'my_account' %}">My Account</a></li>
+                    <li><a class="dropdown-item" href="{% url 'user' user.id %}">My Account</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -60,8 +72,8 @@
             </div>
 
             {% else %}
-            <a class="nav-menu-item primary-a" href="{% url 'signup' %}">Sign Up</a>
-            <a class="nav-menu-item primary-a" href="{% url 'login' %}">Log In</a>
+                <a class="a-primary" href="{% url 'signup' %}">Sign Up</a>
+                <a class="a-primary" href="{% url 'login' %}">Log In</a>
             {% endif %}
         </div>
     </nav>
@@ -74,18 +86,19 @@
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
-                <img class="logo-image-footer" src="{% static 'img/logo.jpg' %}" alt="" srcset="" >
+                <a class="footer-logo" href="{% url 'home' %}">
+                    <img class="logo-image-footer" src="{% static 'img/ep logo.png' %}" alt="" srcset="">
+                </a>
+
             </div>
 
-            <h1>eventpride</h1>
-
             <nav class="nav-footer">
-                <a class="nav-logo" href="{% url 'home' %}">Home</a>
-                <a href="{% url 'about' %}" class="nav-footer-item">About</a>
-                <a href="{% url 'contact' %}" class="nav-footer-item">Connect With Us</a>
-                <a href="{% url 'terms' %}" class="nav-footer-item">Terms</a>
-                <a href="{% url 'developers' %}" class="nav-footer-item">Developers</a>
-                <a href="{% url 'create' %}" class="nav-footer-item">Create Events</a>
+                <a class="a-primary style3" href="{% url 'home' %}">Home</a>
+                <a href="{% url 'about' %}" class="a-primary style3">About</a>
+
+                <a href="{% url 'terms' %}" class="a-primary style3">Terms</a>
+                <a href="{% url 'developers' %}" class="a-primary style3">Developers</a>
+                <a href="{% url 'create' %}" class="a-primary style3">Create Events</a>
             </nav>
         </div>
 

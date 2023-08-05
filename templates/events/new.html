@@ -4,11 +4,16 @@
 
 
 {% block content %}
-<h1>New Event</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p  }}
 
-    <input type="submit" value="Create" class="btn btn-success">
-</form>
+<div class="new-event-contanier">
+    <div class="new-event-form">
+        <p class="style4">Create event</p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Create" class="b-primary">
+        </form>
+    </div>
+</div>
 {% endblock content %}

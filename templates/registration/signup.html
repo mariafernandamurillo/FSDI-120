@@ -1,15 +1,32 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block title %}Sign Up{% endblock title %}
 
 {% block content %}
-<h1>Sign Up</h1>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Sign Up">
-</form>
+<div class="account-form-contanier">
+    <div class="account-form">
 
-{% endblock content %} 
+        <div>
+            <a href="{%  url 'home' %}"  rel="noopener noreferrer">
+                <img class="logo-image-footer" src="{% static 'img/ep logo.png' %}" alt="">
+            </a>
+            
+        </div>
+
+        <p class="style4">Sing Up! </p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="b-primary" type="submit" value="Sign Up">
+        </form>
+    </div>
+    
+</div>
+
+
+
+{% endblock content %}

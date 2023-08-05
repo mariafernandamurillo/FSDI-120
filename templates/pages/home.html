@@ -5,85 +5,98 @@
 
 {% block content %}
 
-    <div class="home-banner-container">
-        <div class="img-home-banner-container">
-            <img class="img-home-banner" src="{% static 'img/july_event_3.jpg' %}" alt="" srcset="">
-        </div>
-        <div class="text-home-banner-container">
-            <p>
-                {% if user.is_authenticated %}
-            <p class="title-home-banner">Hello, {{ user.username }}!</p>
-            <input class="primary-btn" type="button" value="Create Event">
-            {% else %}
-            <p class="title-home-banner">Join to eventpride to create your own events!</p>
-            <input class="primary-btn" type="button" value="Join Me">
-            {% endif %}
-            </p>
-        </div>
-
-        <div class="events-for-you">
-            <nav class="nav-events-for-you">
-                <a  class="primary-a" href="">All</a>
-                {% for category in categories_list %}
-                <a  class="primary-a" href="">{{ category.0 }}</a>
-                {% endfor %}
-            </nav>
-
+<div class="home-banner-container">
+    <div class="img-home-banner-container">
+        <img class="img-home-banner" src="{% static 'img/cover.jpg' %}" alt="" srcset="">
+    </div>
+    <div class="text-home-banner-container">
+        <p>
             {% if user.is_authenticated %}
-            <h1>Events For {{ user.username }}</h1>
+        <p class="style1">Hello, {{ user.username }}!</p>
+        <p class="style2">Discover, Attend, Connect</p>
+        <a href="{% url 'create'%}"> 
+            <input class="b-primary" type="button" value="Create Event">
+        </a>
+            
+        {% else %}
+        <p class="style1">Find your people!</p>
+        <p class="style2">Discover, Attend, Connect</p>
+            <a href="{% url 'login' %}">
+                <input class="b-primary" type="button" value="Join Me">
+            </a>
+            
+        {% endif %}
+        </p>
+    </div>
+
+    <div class="events-list">
+        <nav class="nav-categories">
+            <a class="a-primary all" href="{% url 'home'%}">All</a>
+            {% for category in categories_list %}
+            <a class="a-primary" href="{% url 'by_cat' category.0 %}">{{ category.0 }}</a>
+            {% endfor %}
+        </nav>
+
+        <div class="section-title">
+            {% if user.is_authenticated %}
+            <p class="style4">Events for <span class="capitalize">{{ user.username }}</span></p>
 
             {% else %}
-            <h1>Events For You</h1>
-
+            <p class="style4">Events For You</p>
             {% endif %}
+        </div>
 
+        <div class="event-container">
+            {% for event in events_list %}
 
-            <div class="event-container">
-                {% for event in events_list %}
+            <div class="event-card" id="event-card">
+
+                <img class="img-event-card" src="{{ event.thumbnail.url }}" alt="" srcset=""
+                    onclick="displayDetails('{{ event.id }}')">
+
+                <div class="event-details">
+                    <div class="wrap-name-favorite">
+                        <p onclick="displayDetails('{{ event.id }}')" class="style5">{{ event.name }}</p>
+                        <i onclick="addFavorite(event)" class="b-favorite bi bi-star"></i>
+                    </div>
+
+                    <p class="style6">{{ event.date_picker }} - {{ event.start_time }}</p>
+                    <p class="style2">{{ event.modality }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="events-list">
+        
+        <div class="section-title">
+            <p class="style4">Connect in person</p>
+        </div>
+
+        <div class="event-container">
+            {% for event in events_list %}
+                {% if event.modality == "In-person"%}
                 <div class="event-card" id="event-card">
 
-                    <img class="img-event-card" src="{% static 'img/img_event.jpg' %}" alt="" srcset=""
+                    <img class="img-event-card" src="{{ event.thumbnail.url }}" alt="" srcset=""
                         onclick="displayDetails('{{ event.id }}')">
-                    
-                    <div class="wrap-name-favorite">
-                        <p onclick="displayDetails('{{ event.id }}')" class="event-name">{{ event.name }}</p>
-                        <i onclick="addFavorite(event)" class="favorite-btn bi bi-star"></i>
+
+                    <div class="event-details">
+                        <div class="wrap-name-favorite">
+                            <p onclick="displayDetails('{{ event.id }}')" class="style5">{{ event.name }}</p>
+                            <i onclick="addFavorite(event)" class="b-favorite bi bi-star"></i>
+                        </div>
+
+                        <p class="style6">{{ event.date_picker }} - {{ event.start_time }}</p>
+                        <p class="style2">{{ event.city }}</p>
                     </div>
-                    
-                    <p>{{ event.date }} - {{ event.start_time }}</p>
-                    <p>{{ event.modality }}</p>
                 </div>
-                {% endfor %}
-            </div>
-
-        </div>
-
-        <div class="events-for-you">
-            <h1>Online Events</h1>
-        </div>
-
-        <div class="events-for-you">
-            <h1>Cities With Events</h1>
-            <nav class="nav-events-for-you">
-                <a class="primary-a" href="">City 1</a>
-                <a class="primary-a" href="">City 2</a>
-                <a class="primary-a" href="">City 3</a>
-                <a class="primary-a" href="">City 4</a>
-                <a class="primary-a" href="">City 5</a>
-                <a class="primary-a" href="">City 6</a>
-            </nav>
-
-            <nav class="nav-events-for-you">
-                <a  class="primary-a" href="">City 1</a>
-                <a  class="primary-a" href="">City 2</a>
-                <a  class="primary-a" href="">City 3</a>
-                <a  class="primary-a" href="">City 4</a>
-                <a  class="primary-a" href="">City 5</a>
-                <a  class="primary-a" href="">City 6</a>
-            </nav>
-        </div>
-
+                {% endif %}
+            {% endfor %}
+        </div>       
     </div>
+
+</div>
+
 {% endblock content %}
-
-

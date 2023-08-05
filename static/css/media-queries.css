@@ -1,0 +1,100 @@
+/*Tablet view*/
+@media((min-width: 711px) and (max-width: 948px)) {
+
+    /*Root element size*/
+    html {
+        font-size: 12px;
+    }
+
+    .remove-text {
+        font-size: 0px;
+    }
+
+    .add-icon {
+        font-size: 1rem;
+    }
+
+    .img-home-banner {
+        object-position: 60% 40%;
+    }
+
+    .event-container {
+        justify-content: flex-start;
+    }
+
+    .event-card {
+        height: 255px;
+        width: 30%;
+    }
+
+    .account-form-contanier{
+        height: 70rem;
+    }
+
+    .new-event-contanier{
+        height: 80rem;
+    }
+
+    .team-container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/*Phone view*/
+@media(max-width:710px) {
+
+    /*Root element size*/
+    html {
+        font-size: 9px;
+    }
+
+    .nav-footer a:first-child {
+        display: none;
+    }
+
+    .nav-footer a:last-child {
+        display: none;
+    }
+
+    .remove-text {
+        font-size: 0px;
+    }
+
+    .add-icon {
+        font-size: 1rem;
+    }
+
+    .img-home-banner {
+        object-position: 60% 40%;
+    }
+
+    .event-container {
+        justify-content: center;
+        row-gap: 3rem;
+    }
+
+    .event-card {
+        height: 225px;
+        width: 100%;
+    }
+
+    .account-form-contanier{
+        height: 90rem;
+    }
+
+    .logout-banner{
+        height: 250rem;
+    }
+
+    .logout-image{
+        height: 350rem;
+    }
+
+    .team-container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

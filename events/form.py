@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event
+from .models import Event, Profile
 from django.contrib.admin import widgets
 
 
@@ -15,10 +15,9 @@ class EventForm(forms.ModelForm):
         model = Event
         fields = '__all__'
         widgets = {
-            'time_picker' : TimeInput(), 
-            'end_picker' : TimeInput(), 
+            'start_time' : TimeInput(), 
+            'end_time' : TimeInput(), 
             'date_picker': DateInput(),
             'thumbnail': forms.ClearableFileInput(attrs={'allow_multiple_selected':True}),
         }
-    
 

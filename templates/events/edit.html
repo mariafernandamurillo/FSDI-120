@@ -5,10 +5,16 @@ Edit Event
 {% endblock title %}
 
 {% block content %}
-<h1>Edit event</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p  }}
-    <input type="submit" value="Create" class="btn">
-</form>
+
+<div class="new-event-contanier">
+    <div class="new-event-form">
+        <p class="style4">Edit event</p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Create" class="b-primary">
+        </form>
+    </div>
+</div>
 {% endblock content %}

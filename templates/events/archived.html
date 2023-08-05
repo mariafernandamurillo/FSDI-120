@@ -6,22 +6,35 @@ Event
 
 
 {% block content %}
-<h1>archive</h1>
-{% for event in event_list %}
-    {% if event.status.name == 'archived' %}
-    <div class="card">
-        <div class="card-body">
-            <h1>status= {{ event.status }}</h1>
-            <h5 class="card-title">{{ event.title }}</h5>
-            <h6 class="card-substitle mb-2 text-body-secondary">{{ event.subtitle }}</h6>
-            <p class="card-text">{{ event.body|truncatechars:100 }}</p>
-            <a href="{% url 'event_detail' event.pk %}" class="card-link">Continue reading...</a>
+<div class="nav-manager-container">
+    <nav class="nav-manager">
+        <a class="a-primary all" href="{% url 'published'%}">Pulished</a>
+        <a class="a-primary" href="{% url 'archived'%}">Archived</a>
+        <a class="a-primary" href="{% url 'draft'%}">Drafts</a>
+    </nav>
+</div>
+
+<div class="list-status">
+    <div class="e-list">
+        <p class="style4">Draft events</p>
+        {% for event in event_list %}
+        {% if event.status.name == 'archived' %}
+        <div class="card">
+            <div class="card-body">
+                <p class="style5">{{ event.name }}</p>
+                <h6 class="card-substitle mb-2 text-body-secondary">{{ event.description }}</h6>
+                <p class="card-text">{{ event.body|truncatechars:100 }}</p>
+                <a href="{% url 'event_detail' event.pk %}" class="card-link">Read more...</a>
+            </div>
         </div>
+        <br>
+
+        {% endif %}
+        {% endfor %}
+        {% if published_count == 0 %}
+        <h1>no published events</h1>
+        {% endif %}
     </div>
-    <br>
-    {% endif %}
-{% endfor %}
-{% if archived_count == 0 %}
-    <h1>no archived events</h1>
-    {% endif %}
+
+</div>
 {% endblock content %}

@@ -1,8 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Developers{% endblock title %}
 
 {% block content %}
-<h1>Meet Our Development Team</h1>
 
+<div class="team-container">
+    <div class="team-member-container">
+        <div>
+            <img class="team-img" src="{% static 'img/aaron.jpg' %}" alt="" srcset="">
+        </div>
+
+        <p class="style1">Aaron Pride</p>
+        <p class="style2" style="font-weight: 600;">Developer</p>
+
+        <div class="team-description">
+            <p class="style7">Hello my name is Aaron Pride and I am a full-stack developer with a diverse background in
+                problem
+                solving issues across wide range of tasks and equipment.</p>
+        </div>
+
+    </div>
+
+    <div class="team-member-container">
+        <div>
+            <img class="team-img" src="{% static 'img/fer.jpg' %}" alt="" srcset="">
+        </div>
+
+        <p class="style1">Fernanda Murillo</p>
+        <p class="style2" style="font-weight: 600;">Web Designer</p>
+
+        <div class="team-description">
+            <p class="style7">A regular person with a passion for creating engaging and user-focused digital experiences.</p>
+        </div>
+
+    </div>
+
+</div>
 {% endblock content %}

@@ -4,10 +4,17 @@
 
 
 {% block content %}
-<h1>Delete Event</h1>
-<p>Are you sure you want to delete "{{ event.title }}"?</p>
-<form method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Confirm" class="btn btn-danger">
-</form>
+
+<div class="new-event-contanier">
+    <div class="new-event-form">
+        <p class="style4">Are you sure you want to delete <span class="style5">"{{ event.name }}"</span>?</p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="b-secondary">
+        </form>
+    </div>
+</div>
+
 {% endblock content %}
+
+
